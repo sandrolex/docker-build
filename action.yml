@@ -19,6 +19,7 @@ runs:
       uses: docker/setup-buildx-action@v2
   
     - name: install docker scan
+      shell: bash
       run: |
         python3 -m pip install -U pip
         python3 -m pip install dockerscan
