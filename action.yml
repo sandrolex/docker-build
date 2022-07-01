@@ -21,4 +21,4 @@ runs:
     - name: "Docker build"
       shell: bash
       run: | 
-        docker build -t ${{ inputs.image-name }}. 
+        docker build -t ${{ inputs.image-name }} . 
