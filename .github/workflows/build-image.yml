@@ -1,0 +1,22 @@
+on:
+  workflow_call:
+    inputs:
+      image-name:
+        required: true
+        type: string
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
+      
+      - name: Build Image
+        uses: sandrolex/docker-build@main
+        with:
+          image-name: ${{ inputs.image-name }}
+      
+      - name: test image
+        run: | 
+          docker run --rm -it ${{ inputs.image-name }} cat /etc/os-release
