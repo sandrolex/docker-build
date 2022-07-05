@@ -19,4 +19,4 @@ jobs:
       
       - name: test image
         run: | 
-          docker run --rm -it ${{ inputs.image-name }} cat /etc/os-release
+          docker run --rm  ${{ inputs.image-name }} cat /etc/os-release
