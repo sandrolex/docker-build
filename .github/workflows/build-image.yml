@@ -11,12 +11,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # v3.0.2
+    
+      - name: Dummy
+        run: |
+          echo "DUMMY"
       
-      - name: Build Image
-        uses: sandrolex/docker-build@main
-        with:
-          image-name: ${{ inputs.image-name }}
+      # - name: Build Image
+      #   uses: sandrolex/docker-build@main
+      #   with:
+      #     image-name: ${{ inputs.image-name }}
       
-      - name: test image
-        run: | 
-          docker run --rm  ${{ inputs.image-name }} cat /etc/os-release
+      # - name: test image
+      #   run: | 
+      #     docker run --rm  ${{ inputs.image-name }} cat /etc/os-release
