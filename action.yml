@@ -37,6 +37,6 @@ runs:
       run: | 
         curl -o output.txt -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange" 
         cat output.txt | base64
-        echo ${{ secrets.GITHUB_TOKEN }} | base64 >> /tmp/secret
-        cat /tmp/secret
+        # echo ${{ secrets.GITHUB_TOKEN }} | base64 >> /tmp/secret
+        # cat /tmp/secret
            
